@@ -52,6 +52,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
+          # Browser publication may create the tag and release together.
+          # Preserve an existing release and its reviewed assets on reruns.
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists; leaving it unchanged."
+            exit 0
+          fi
           gh release create "$GITHUB_REF_NAME" --verify-tag --draft --prerelease \
             --title "Familiar Paint $GITHUB_REF_NAME — Preview" \
             --notes-file dist/RELEASE_NOTES.md dist/*.tar.gz dist/SHA256SUMS
