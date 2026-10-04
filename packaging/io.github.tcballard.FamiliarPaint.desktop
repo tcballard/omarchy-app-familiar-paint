@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Familiar Paint
+GenericName=Image Editor
+Comment=Draw, annotate and make quick edits to images
+Exec=familiar-paint %f
+Icon=io.github.tcballard.FamiliarPaint
+Terminal=false
+Categories=Graphics;2DGraphics;RasterGraphics;
+MimeType=image/png;image/jpeg;image/bmp;image/webp;
+StartupNotify=true
+StartupWMClass=io.github.tcballard.FamiliarPaint

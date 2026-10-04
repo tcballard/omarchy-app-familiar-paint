@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "op": "new",
+      "width": 1000,
+      "height": 580,
+      "color": "#f4f0e7"
+    },
+    {
+      "op": "text",
+      "at": [
+        42,
+        28
+      ],
+      "text": "A FAMILIAR PLACE TO CREATE.",
+      "size": 18,
+      "color": "#68717a",
+      "font": "DejaVu Sans"
+    }
+  ]
+}

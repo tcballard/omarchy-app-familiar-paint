@@ -1,0 +1,2 @@
+Staged vs single-batch render: pixel-identical
+MD5=b22e32c3900b267a9935969ec9dc877a

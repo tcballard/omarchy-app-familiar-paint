@@ -1,0 +1,42 @@
+{
+  "silent": true,
+  "format": "1280x1024 30fps H264",
+  "shots": [
+    [
+      "06",
+      3,
+      "A welcome card. Painted through the CLI."
+    ],
+    [
+      "01",
+      3,
+      "01 / Start with a blank canvas"
+    ],
+    [
+      "02",
+      3,
+      "02 / Build a familiar little window"
+    ],
+    [
+      "03",
+      3,
+      "03 / Write the welcome"
+    ],
+    [
+      "04",
+      3,
+      "04 / Add a splash of colour"
+    ],
+    [
+      "05",
+      3,
+      "05 / Give it a little personality"
+    ],
+    [
+      "06",
+      5,
+      "06 / Save the finished welcome card"
+    ]
+  ],
+  "disclosure": "Real Qt app captures of CLI-generated files. Staged playback; live socket control not demonstrated."
+}

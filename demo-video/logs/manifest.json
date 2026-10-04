@@ -1,0 +1,98 @@
+[
+  {
+    "stage": "01",
+    "command": "./paint --render batches/01.json --output images/01.png",
+    "result": {
+      "can_redo": false,
+      "can_undo": false,
+      "dirty": false,
+      "format": "ARGB32-premultiplied",
+      "height": 580,
+      "ok": true,
+      "path": "/workspace/scratch/f47f53ecae17/demo-video/images/01.png",
+      "revision": "d744af84-103d-4317-b5ca-6be2b2930d13:0",
+      "version": 1,
+      "width": 1000
+    }
+  },
+  {
+    "stage": "02",
+    "command": "./paint --render batches/02.json --input images/01.png --output images/02.png",
+    "result": {
+      "can_redo": false,
+      "can_undo": false,
+      "dirty": false,
+      "format": "ARGB32-premultiplied",
+      "height": 580,
+      "ok": true,
+      "path": "/workspace/scratch/f47f53ecae17/demo-video/images/02.png",
+      "revision": "406ff1c6-f562-4ccb-9e54-65f2f8d1324f:0",
+      "version": 1,
+      "width": 1000
+    }
+  },
+  {
+    "stage": "03",
+    "command": "./paint --render batches/03.json --input images/02.png --output images/03.png",
+    "result": {
+      "can_redo": false,
+      "can_undo": false,
+      "dirty": false,
+      "format": "ARGB32-premultiplied",
+      "height": 580,
+      "ok": true,
+      "path": "/workspace/scratch/f47f53ecae17/demo-video/images/03.png",
+      "revision": "9a53578b-1b64-44ec-8d0c-8716f57c8a73:0",
+      "version": 1,
+      "width": 1000
+    }
+  },
+  {
+    "stage": "04",
+    "command": "./paint --render batches/04.json --input images/03.png --output images/04.png",
+    "result": {
+      "can_redo": false,
+      "can_undo": false,
+      "dirty": false,
+      "format": "ARGB32-premultiplied",
+      "height": 580,
+      "ok": true,
+      "path": "/workspace/scratch/f47f53ecae17/demo-video/images/04.png",
+      "revision": "820a2a5c-22c0-42e3-b681-12de39ef52f7:0",
+      "version": 1,
+      "width": 1000
+    }
+  },
+  {
+    "stage": "05",
+    "command": "./paint --render batches/05.json --input images/04.png --output images/05.png",
+    "result": {
+      "can_redo": false,
+      "can_undo": false,
+      "dirty": false,
+      "format": "ARGB32-premultiplied",
+      "height": 580,
+      "ok": true,
+      "path": "/workspace/scratch/f47f53ecae17/demo-video/images/05.png",
+      "revision": "9d1e91dd-1ec9-4896-b7e2-5916474e758d:0",
+      "version": 1,
+      "width": 1000
+    }
+  },
+  {
+    "stage": "06",
+    "command": "./paint --render batches/06.json --input images/05.png --output images/06.png",
+    "result": {
+      "can_redo": false,
+      "can_undo": false,
+      "dirty": false,
+      "format": "ARGB32-premultiplied",
+      "height": 580,
+      "ok": true,
+      "path": "/workspace/scratch/f47f53ecae17/demo-video/images/06.png",
+      "revision": "d629f4d0-7910-4b98-b26f-e97ebf2a5f76:0",
+      "version": 1,
+      "width": 1000
+    }
+  }
+]

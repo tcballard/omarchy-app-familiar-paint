@@ -1,0 +1,32 @@
+********* Start testing of PaintTests *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : PaintTests::initTestCase()
+PASS   : PaintTests::historyBranch()
+PASS   : PaintTests::cropResizeUndo()
+PASS   : PaintTests::sizeAndCorruptRejection()
+PASS   : PaintTests::saveReopen()
+PASS   : PaintTests::invalidFormatPreservesFile()
+PASS   : PaintTests::jpegFlattensWhite()
+PASS   : PaintTests::historyBudget()
+PASS   : PaintTests::floodContained()
+PASS   : PaintTests::brushUndoCancel()
+PASS   : PaintTests::shapes(line)
+PASS   : PaintTests::shapes(arrow)
+PASS   : PaintTests::shapes(rectangle)
+PASS   : PaintTests::shapes(ellipse)
+PASS   : PaintTests::focusLossCancelsDrag()
+PASS   : PaintTests::selectCropClipboard()
+PASS   : PaintTests::textUndo()
+PASS   : PaintTests::asyncSaveConflictAndClose()
+QWARN  : PaintTests::cancelClose() This plugin does not support propagateSizeHints()
+PASS   : PaintTests::cancelClose()
+PASS   : PaintTests::batchAtomicityAndRevision()
+PASS   : PaintTests::commandsRejectBadInputs()
+PASS   : PaintTests::sharedDrawingEngine()
+PASS   : PaintTests::liveRejectsActiveDrag()
+SKIP   : PaintTests::cliAndLiveRoundTrip() CLI render/inspect checked; local socket transport disabled by this test environment.
+   Loc: [/workspace/scratch/f47f53ecae17/familiar-paint/tests/native/paint_tests.cpp(195)]
+PASS   : PaintTests::themeReplacement()
+PASS   : PaintTests::cleanupTestCase()
+Totals: 25 passed, 0 failed, 1 skipped, 0 blacklisted, 487ms
+********* Finished testing of PaintTests *********

@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "op": "rect",
+      "from": [
+        260,
+        378
+      ],
+      "to": [
+        304,
+        406
+      ],
+      "color": "#243044",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        327,
+        378
+      ],
+      "to": [
+        371,
+        406
+      ],
+      "color": "#2352ac",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        394,
+        378
+      ],
+      "to": [
+        438,
+        406
+      ],
+      "color": "#3e9180",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        461,
+        378
+      ],
+      "to": [
+        505,
+        406
+      ],
+      "color": "#efc95b",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        528,
+        378
+      ],
+      "to": [
+        572,
+        406
+      ],
+      "color": "#e99563",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        595,
+        378
+      ],
+      "to": [
+        639,
+        406
+      ],
+      "color": "#c96772",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        662,
+        378
+      ],
+      "to": [
+        706,
+        406
+      ],
+      "color": "#ffffff",
+      "filled": true,
+      "width": 1
+    }
+  ]
+}

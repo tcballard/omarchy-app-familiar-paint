@@ -1,0 +1,2 @@
+Six JSON batches. One welcome card.
+Native C++ / Qt Paint. No image-generation service.

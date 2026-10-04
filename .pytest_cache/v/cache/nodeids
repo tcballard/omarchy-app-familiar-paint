@@ -1,0 +1,15 @@
+[
+  "tests/test_paint.py::test_async_save_and_external_conflict",
+  "tests/test_paint.py::test_cancel_close_preserves_document",
+  "tests/test_paint.py::test_crop_resize_undo",
+  "tests/test_paint.py::test_history_memory_budget",
+  "tests/test_paint.py::test_mouse_brush_undo_and_cancel",
+  "tests/test_paint.py::test_save_reopen_preserves_alpha_and_failure",
+  "tests/test_paint.py::test_saved_state_and_branch",
+  "tests/test_paint.py::test_select_crop_and_clipboard",
+  "tests/test_paint.py::test_shapes[Arrow]",
+  "tests/test_paint.py::test_shapes[Ellipse]",
+  "tests/test_paint.py::test_shapes[Line]",
+  "tests/test_paint.py::test_shapes[Rectangle]",
+  "tests/test_paint.py::test_size_and_corrupt_rejection"
+]

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "op": "text",
+      "at": [
+        42,
+        548
+      ],
+      "text": "DRAWN ENTIRELY THROUGH THE CLI",
+      "size": 14,
+      "color": "#68717a",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "text",
+      "at": [
+        766,
+        548
+      ],
+      "text": "MAKE YOURSELF AT HOME.",
+      "size": 13,
+      "color": "#68717a",
+      "font": "DejaVu Sans"
+    }
+  ]
+}

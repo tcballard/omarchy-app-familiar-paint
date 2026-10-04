@@ -1,0 +1,1 @@
+Real Qt app captures of CLI-generated files. Staged playback; live socket control not demonstrated.

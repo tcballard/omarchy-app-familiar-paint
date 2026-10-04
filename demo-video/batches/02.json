@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "op": "rect",
+      "from": [
+        205,
+        132
+      ],
+      "to": [
+        821,
+        470
+      ],
+      "color": "#d8d4c9",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        185,
+        112
+      ],
+      "to": [
+        801,
+        450
+      ],
+      "color": "#c7c8c5",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        199,
+        126
+      ],
+      "to": [
+        787,
+        436
+      ],
+      "color": "#ffffff",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        199,
+        126
+      ],
+      "to": [
+        787,
+        169
+      ],
+      "color": "#183e92",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "text",
+      "at": [
+        214,
+        135
+      ],
+      "text": "untitled — Paint",
+      "size": 20,
+      "color": "#ffffff",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "rect",
+      "from": [
+        747,
+        136
+      ],
+      "to": [
+        774,
+        158
+      ],
+      "color": "#d5d5cf",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "line",
+      "from": [
+        754,
+        142
+      ],
+      "to": [
+        767,
+        152
+      ],
+      "color": "#243044",
+      "width": 2
+    },
+    {
+      "op": "line",
+      "from": [
+        767,
+        142
+      ],
+      "to": [
+        754,
+        152
+      ],
+      "color": "#243044",
+      "width": 2
+    }
+  ]
+}

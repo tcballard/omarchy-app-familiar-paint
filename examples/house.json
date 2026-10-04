@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "commands": [
+    {"op":"new","width":800,"height":520,"color":"#e9f3f2"},
+    {"op":"ellipse","from":[590,55],"to":[690,155],"color":"#efc95b","filled":true,"width":1},
+    {"op":"rect","from":[0,365],"to":[799,519],"color":"#94b696","filled":true,"width":1},
+    {"op":"rect","from":[245,230],"to":[545,395],"color":"#f5dbad","filled":true,"width":1},
+    {"op":"stroke","points":[[215,235],[395,100],[575,235]],"color":"#bc6658","width":18},
+    {"op":"rect","from":[285,265],"to":[345,320],"color":"#638896","filled":true,"width":1},
+    {"op":"line","from":[315,265],"to":[315,320],"color":"#f5dbad","width":4},
+    {"op":"line","from":[285,292],"to":[345,292],"color":"#f5dbad","width":4},
+    {"op":"rect","from":[425,290],"to":[490,395],"color":"#675449","filled":true,"width":1},
+    {"op":"ellipse","from":[475,342],"to":[481,348],"color":"#efc95b","filled":true,"width":1},
+    {"op":"text","at":[34,36],"text":"HOME, DRAWN BY YOUR AGENT.","size":22,"color":"#34484b"},
+    {"op":"text","at":[34,464],"text":"Familiar tools. A new pair of hands.","size":19,"color":"#34484b"}
+  ]
+}

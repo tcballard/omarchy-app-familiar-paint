@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "op": "text",
+      "at": [
+        253,
+        207
+      ],
+      "text": "WELCOME",
+      "size": 72,
+      "color": "#243044",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "text",
+      "at": [
+        258,
+        294
+      ],
+      "text": "TO FAMILIAR PAINT",
+      "size": 28,
+      "color": "#536878",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "rect",
+      "from": [
+        260,
+        355
+      ],
+      "to": [
+        725,
+        358
+      ],
+      "color": "#dcded8",
+      "filled": true,
+      "width": 1
+    }
+  ]
+}

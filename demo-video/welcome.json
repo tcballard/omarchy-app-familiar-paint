@@ -1,0 +1,374 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "op": "new",
+      "width": 1000,
+      "height": 580,
+      "color": "#f4f0e7"
+    },
+    {
+      "op": "text",
+      "at": [
+        42,
+        28
+      ],
+      "text": "A FAMILIAR PLACE TO CREATE.",
+      "size": 18,
+      "color": "#68717a",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "rect",
+      "from": [
+        205,
+        132
+      ],
+      "to": [
+        821,
+        470
+      ],
+      "color": "#d8d4c9",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        185,
+        112
+      ],
+      "to": [
+        801,
+        450
+      ],
+      "color": "#c7c8c5",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        199,
+        126
+      ],
+      "to": [
+        787,
+        436
+      ],
+      "color": "#ffffff",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        199,
+        126
+      ],
+      "to": [
+        787,
+        169
+      ],
+      "color": "#183e92",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "text",
+      "at": [
+        214,
+        135
+      ],
+      "text": "untitled — Paint",
+      "size": 20,
+      "color": "#ffffff",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "rect",
+      "from": [
+        747,
+        136
+      ],
+      "to": [
+        774,
+        158
+      ],
+      "color": "#d5d5cf",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "line",
+      "from": [
+        754,
+        142
+      ],
+      "to": [
+        767,
+        152
+      ],
+      "color": "#243044",
+      "width": 2
+    },
+    {
+      "op": "line",
+      "from": [
+        767,
+        142
+      ],
+      "to": [
+        754,
+        152
+      ],
+      "color": "#243044",
+      "width": 2
+    },
+    {
+      "op": "text",
+      "at": [
+        253,
+        207
+      ],
+      "text": "WELCOME",
+      "size": 72,
+      "color": "#243044",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "text",
+      "at": [
+        258,
+        294
+      ],
+      "text": "TO FAMILIAR PAINT",
+      "size": 28,
+      "color": "#536878",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "rect",
+      "from": [
+        260,
+        355
+      ],
+      "to": [
+        725,
+        358
+      ],
+      "color": "#dcded8",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        260,
+        378
+      ],
+      "to": [
+        304,
+        406
+      ],
+      "color": "#243044",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        327,
+        378
+      ],
+      "to": [
+        371,
+        406
+      ],
+      "color": "#2352ac",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        394,
+        378
+      ],
+      "to": [
+        438,
+        406
+      ],
+      "color": "#3e9180",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        461,
+        378
+      ],
+      "to": [
+        505,
+        406
+      ],
+      "color": "#efc95b",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        528,
+        378
+      ],
+      "to": [
+        572,
+        406
+      ],
+      "color": "#e99563",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        595,
+        378
+      ],
+      "to": [
+        639,
+        406
+      ],
+      "color": "#c96772",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "rect",
+      "from": [
+        662,
+        378
+      ],
+      "to": [
+        706,
+        406
+      ],
+      "color": "#ffffff",
+      "filled": true,
+      "width": 1
+    },
+    {
+      "op": "stroke",
+      "points": [
+        [
+          854,
+          249
+        ],
+        [
+          854,
+          344
+        ],
+        [
+          878,
+          322
+        ],
+        [
+          897,
+          358
+        ],
+        [
+          913,
+          349
+        ],
+        [
+          891,
+          313
+        ],
+        [
+          925,
+          313
+        ],
+        [
+          854,
+          249
+        ]
+      ],
+      "color": "#243044",
+      "width": 6
+    },
+    {
+      "op": "line",
+      "from": [
+        144,
+        217
+      ],
+      "to": [
+        116,
+        197
+      ],
+      "color": "#e99563",
+      "width": 6
+    },
+    {
+      "op": "line",
+      "from": [
+        136,
+        250
+      ],
+      "to": [
+        100,
+        250
+      ],
+      "color": "#e99563",
+      "width": 6
+    },
+    {
+      "op": "line",
+      "from": [
+        144,
+        281
+      ],
+      "to": [
+        117,
+        302
+      ],
+      "color": "#e99563",
+      "width": 6
+    },
+    {
+      "op": "text",
+      "at": [
+        250,
+        493
+      ],
+      "text": "Familiar tools. A new pair of hands.",
+      "size": 25,
+      "color": "#243044",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "text",
+      "at": [
+        42,
+        548
+      ],
+      "text": "DRAWN ENTIRELY THROUGH THE CLI",
+      "size": 14,
+      "color": "#68717a",
+      "font": "DejaVu Sans"
+    },
+    {
+      "op": "text",
+      "at": [
+        766,
+        548
+      ],
+      "text": "MAKE YOURSELF AT HOME.",
+      "size": 13,
+      "color": "#68717a",
+      "font": "DejaVu Sans"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.22)
+project(PaintCapture LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+add_subdirectory(.. paint)
+add_executable(capture capture.cpp)
+target_link_libraries(capture PRIVATE paint-ui)

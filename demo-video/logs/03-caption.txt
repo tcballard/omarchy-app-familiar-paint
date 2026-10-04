@@ -1,0 +1,2 @@
+./paint --render batches/03.json --input images/02.png --output images/03.png
+OK  |  1000 x 580  |  PNG saved

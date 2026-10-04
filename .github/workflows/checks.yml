@@ -1,0 +1,16 @@
+name: Native checks
+on: [push, pull_request]
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y cmake ninja-build qt6-base-dev desktop-file-utils
+      - run: cmake -S . -B target -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build target --parallel 2
+      - run: ctest --test-dir target --output-on-failure
+      - run: desktop-file-validate packaging/io.github.tcballard.FamiliarPaint.desktop
+      - uses: actions/upload-artifact@v4
+        with:
+          name: familiar-paint-linux-x86_64
+          path: target/familiar-paint
