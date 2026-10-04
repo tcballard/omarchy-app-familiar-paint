@@ -1,0 +1,7 @@
+target/
+build/
+*.user
+target-agent/
+demo-video/build/
+demo-video/render/
+demo-video/paint
