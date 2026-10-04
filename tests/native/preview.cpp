@@ -2,6 +2,10 @@
 #include "theme.h"
 #include <QApplication>
 #include <QTest>
+#include <QToolButton>
+#include <QSpinBox>
+#include <QCheckBox>
+#include <QScrollArea>
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
@@ -37,6 +41,25 @@ int main(int argc, char **argv) {
     w.refresh();
     if (argc > 3) w.resize(QString::fromLocal8Bit(argv[2]).toInt(), QString::fromLocal8Bit(argv[3]).toInt());
     app.processEvents();
+    if (argc > 4) {
+        auto buttons = w.findChildren<QToolButton *>("drawingTool");
+        auto choose = [&](QString name) { for(auto b:buttons) if(b->accessibleName()==name) { b->click(); app.processEvents(); return; } };
+        choose("Text");
+        auto textSize = w.findChild<QSpinBox *>("textSize");
+        if (!textSize->isVisible() || !textSize->isEnabled()) return 3;
+        choose("Rectangle");
+        auto fill = w.findChild<QCheckBox *>("shapeFill");
+        if (!fill->isVisible() || !fill->isEnabled() || textSize->isVisible()) return 4;
+        choose("Brush");
+        if (fill->isVisible() || textSize->isVisible()) return 5;
+        if (w.height() < 720) {
+            auto stroke = w.findChild<QSpinBox *>("strokeSize");
+            auto toolScroll = w.findChild<QScrollArea *>("toolboxScroll");
+            if (!toolScroll->viewport()->rect().contains(stroke->mapTo(toolScroll->viewport(),stroke->rect().bottomRight()))) return 6;
+        }
+        for (auto b : w.findChildren<QToolButton *>()) if (b->accessibleName() == "Fit canvas in window") b->click();
+        app.processEvents();
+    }
     w.capture(argc > 1 ? QString::fromLocal8Bit(argv[1]) : "preview.png");
     return 0;
 }

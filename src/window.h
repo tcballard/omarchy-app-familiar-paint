@@ -30,6 +30,7 @@ signals:
     void drawingColourChanged();
 protected:
     void closeEvent(QCloseEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
     bool event(QEvent *) override;
 private:
     QAction *action(QWidget *container, const QString &name, const QKeySequence &shortcut, std::function<void()> callback);

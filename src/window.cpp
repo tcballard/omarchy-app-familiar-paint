@@ -28,6 +28,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QSlider>
+#include <QResizeEvent>
 #include <QPainter>
 #include <QPainterPath>
 #include <QtConcurrent>
@@ -105,14 +106,14 @@ void Window::makeControls() {
     });
     action(image, "Flip horizontally", {}, [this] { document_.commit(document_.image().mirrored(true, false)); refresh(); });
     auto help = menuBar()->addMenu("&Help");
-    action(help, "About Familiar Paint", {}, [this] { QMessageBox::about(this, "Familiar Paint", "Familiar Paint 0.0.1 — development preview\n\nA small native painting app for Omarchy.\nC++ and Qt. No account or cloud.\n\nSave your work regularly: crash recovery is not yet implemented."); });
+    action(help, "About Familiar Paint", {}, [this] { QMessageBox::about(this, "Familiar Paint", "Familiar Paint 0.0.2 — development preview\n\nA small native painting app for Omarchy.\nC++ and Qt. No account or cloud.\n\nSave your work regularly: crash recovery is not yet implemented."); });
     // Classic Paint's two-column toolbox is the primary navigation.
     auto body = new QWidget(this);
     auto bodyLayout = new QHBoxLayout(body);
     bodyLayout->setContentsMargins(0, 0, 0, 0); bodyLayout->setSpacing(0);
     auto toolbox = new QWidget(body); toolbox->setObjectName("toolbox"); toolbox->setFixedWidth(128);
-    toolbox->setMinimumHeight(620);
-    auto side = new QVBoxLayout(toolbox); side->setContentsMargins(12, 16, 12, 12); side->setSpacing(12);
+    toolbox->setMinimumHeight(0);
+    auto side = new QVBoxLayout(toolbox); side->setContentsMargins(12, 12, 12, 10); side->setSpacing(8);
     auto title = new QLabel("TOOLS", toolbox); title->setObjectName("sectionLabel"); side->addWidget(title);
     auto grid = new QGridLayout(); grid->setSpacing(4);
     auto group = new QActionGroup(this);
@@ -137,10 +138,10 @@ void Window::makeControls() {
     }
     side->addLayout(grid); side->addWidget(toolName);
     auto divider = new QFrame(toolbox); divider->setFrameShape(QFrame::HLine); side->addWidget(divider);
-    auto sampleLabel = new QLabel("STROKE", toolbox); sampleLabel->setObjectName("sectionLabel"); side->addWidget(sampleLabel);
+    auto sampleLabel = new QLabel("STROKE", toolbox); sampleLabel->setObjectName("strokeLabel"); side->addWidget(sampleLabel);
     auto sample = new QLabel(toolbox); sample->setObjectName("strokePreview"); sample->setFixedSize(100, 72);
     sample->setAccessibleName("Current brush stroke preview"); side->addWidget(sample);
-    auto size = new QSpinBox(toolbox); size->setRange(1, 80); size->setValue(5); size->setSuffix(" px");
+    auto size = new QSpinBox(toolbox); size->setObjectName("strokeSize"); size->setRange(1, 80); size->setValue(5); size->setSuffix(" px");
     size->setAccessibleName("Stroke width"); side->addWidget(size);
     auto drawSample = [this, sample, size] {
         QPixmap pix(100, 72); pix.fill(QColor("#f4f1e9")); QPainter p(&pix);
@@ -151,7 +152,7 @@ void Window::makeControls() {
     connect(canvas_, &Canvas::colourPicked, this, [drawSample](QColor) { drawSample(); });
     connect(this, &Window::drawingColourChanged, sample, drawSample); drawSample();
     side->addStretch();
-    auto shortcutHint = new QLabel("Esc to cancel\nCtrl+Z to undo", toolbox); shortcutHint->setObjectName("quietLabel"); side->addWidget(shortcutHint);
+    auto shortcutHint = new QLabel("Esc to cancel\nCtrl+Z to undo", toolbox); shortcutHint->setObjectName("shortcutHint"); side->addWidget(shortcutHint);
     auto toolboxScroll = new QScrollArea(body); toolboxScroll->setObjectName("toolboxScroll");
     toolboxScroll->setFrameShape(QFrame::NoFrame); toolboxScroll->setWidgetResizable(true);
     toolboxScroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -163,18 +164,17 @@ void Window::makeControls() {
 
     auto options = new QToolBar("Image and tool controls", this); options->setMovable(false); options->setObjectName("commandBar");
     addToolBar(options);
-    auto brand = new QLabel("  Familiar Paint  ", this); brand->setObjectName("brandLabel"); options->addWidget(brand); options->addSeparator();
     action(options, "Open…", {}, [this] { open(); });
     action(options, "Save", {}, [this] { save(); }); options->addSeparator();
     action(options, "Undo", {}, [this] { history(false); });
     action(options, "Redo", {}, [this] { history(true); }); options->addSeparator();
     action(options, "Crop to selection", {}, [this] { crop(); });
     action(options, "Resize…", {}, [this] { resizeImage(); }); options->addSeparator();
-    auto filled = new QCheckBox("Fill shapes", this); filled->setAccessibleName("Fill shapes");
-    connect(filled, &QCheckBox::toggled, canvas_, &Canvas::setFilled); options->addWidget(filled);
-    options->addSeparator(); options->addWidget(new QLabel(" Text ", this));
-    auto textSize = new QSpinBox(this); textSize->setRange(8, 200); textSize->setValue(20); textSize->setSuffix(" px");
-    textSize->setAccessibleName("Text size"); connect(textSize, &QSpinBox::valueChanged, canvas_, &Canvas::setTextSize); options->addWidget(textSize);
+    auto filled = new QCheckBox("Fill shapes", this); filled->setObjectName("shapeFill"); filled->setAccessibleName("Fill shapes");
+    connect(filled, &QCheckBox::toggled, canvas_, &Canvas::setFilled); options->addWidget(filled)->setObjectName("shapeFillAction");
+    options->addSeparator()->setObjectName("toolOptionsSeparator"); options->addWidget(new QLabel(" Text ", this))->setObjectName("textLabelAction");
+    auto textSize = new QSpinBox(this); textSize->setObjectName("textSize"); textSize->setRange(8, 200); textSize->setValue(20); textSize->setSuffix(" px");
+    textSize->setAccessibleName("Text size"); connect(textSize, &QSpinBox::valueChanged, canvas_, &Canvas::setTextSize); options->addWidget(textSize)->setObjectName("textSizeAction");
 
     auto palette = new QToolBar("Colour palette", this); palette->setObjectName("colourPalette"); palette->setMovable(false);
     addToolBar(Qt::BottomToolBarArea, palette);
@@ -194,14 +194,15 @@ void Window::makeControls() {
     for (const auto &colour : colours) {
         auto button = new QToolButton(this); button->setObjectName("swatch"); button->setFixedSize(25, 25);
         button->setAccessibleName("Colour " + colour); button->setToolTip(colour);
-        button->setStyleSheet(QString("QToolButton { background:%1; border:1px solid #8b9095; border-radius:0; padding:0; } QToolButton:hover, QToolButton:focus { border:2px solid #ffffff; }").arg(colour));
+        button->setCheckable(true); button->setProperty("drawingColour", colour);
+        button->setStyleSheet(QString("QToolButton { background:%1; border:1px solid #8b9095; border-radius:0; padding:0; } QToolButton:hover { border:2px solid #ffffff; } QToolButton:checked { border:3px double #ffffff; } QToolButton:focus { border:3px dashed #efc95b; }").arg(colour));
         connect(button, &QToolButton::clicked, this, [this, colour] { setColour(QColor(colour)); });
         swatchGrid->addWidget(button, index / 14, index % 14); ++index;
     }
     palette->addWidget(swatches); palette->addSeparator();
     action(palette, "Edit colours…", {}, [this] { auto c = QColorDialog::getColor(canvas_->colour(), this, "Drawing colour"); if (c.isValid()) setColour(c); });
     auto spacer = new QWidget(this); spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred); palette->addWidget(spacer);
-    auto paletteHint = new QLabel("Click a swatch to paint", this); paletteHint->setObjectName("quietLabel"); palette->addWidget(paletteHint);
+    auto paletteHint = new QLabel("Click a swatch to paint", this); paletteHint->setObjectName("paletteHint"); palette->addWidget(paletteHint)->setObjectName("paletteHintAction");
     setColour(canvas_->colour());
 
     auto zoom = new QSlider(Qt::Horizontal, this); zoom->setRange(25, 400); zoom->setValue(100); zoom->setFixedWidth(136); zoom->setAccessibleName("Canvas zoom percent");
@@ -217,6 +218,14 @@ void Window::setColour(QColor colour) {
     colourButton_->setStyleSheet("QToolButton { background:" + colour.name() + "; border:3px double #a7a9ac; border-radius:0; }");
     colourButton_->setToolTip("Drawing colour " + colour.name() + " — click to edit");
     if (auto label = findChild<QLabel *>("colourValue")) label->setText(colour.name().toUpper());
+    for (auto swatch : findChildren<QToolButton *>("swatch")) {
+        const bool active = QColor(swatch->property("drawingColour").toString()) == colour;
+        swatch->setChecked(active);
+        swatch->setText(active ? "✓" : "");
+        QPalette swatchPalette = swatch->palette();
+        swatchPalette.setColor(QPalette::ButtonText, QColor(swatch->property("drawingColour").toString()).lightness() > 140 ? Qt::black : Qt::white);
+        swatch->setPalette(swatchPalette);
+    }
     emit drawingColourChanged();
 }
 
@@ -225,7 +234,13 @@ void Window::refresh() {
     setWindowTitle((document_.dirty() ? "• " : "") + name + " — Familiar Paint");
     statusBar()->showMessage(QString("%1 × %2 px   ·   Drag to draw · Esc cancels").arg(document_.image().width()).arg(document_.image().height()));
     canvas_->syncSize();
+    const auto tool = canvas_->tool();
+    if (auto fill = findChild<QCheckBox *>("shapeFill")) fill->setEnabled(tool == Canvas::Tool::Rectangle || tool == Canvas::Tool::Ellipse);
+    if (auto textSize = findChild<QSpinBox *>("textSize")) textSize->setEnabled(tool == Canvas::Tool::Text);
+    if (auto stroke = findChild<QSpinBox *>("strokeSize")) stroke->setEnabled(tool != Canvas::Tool::Text && tool != Canvas::Tool::Fill && tool != Canvas::Tool::Picker && tool != Canvas::Tool::Select);
     for (auto a : findChildren<QAction *>()) {
+        if (a->objectName() == "shapeFillAction") a->setVisible(tool == Canvas::Tool::Rectangle || tool == Canvas::Tool::Ellipse);
+        if (a->objectName() == "textSizeAction" || a->objectName() == "textLabelAction" || a->objectName() == "toolOptionsSeparator") a->setVisible(tool == Canvas::Tool::Text);
         if (a->text() == "Undo") a->setEnabled(document_.canUndo());
         if (a->text() == "Redo") a->setEnabled(document_.canRedo());
         if (a->text() == "Crop to selection") a->setEnabled(!canvas_->selection().isEmpty());
@@ -340,3 +355,12 @@ bool Window::event(QEvent *event) {
     return QMainWindow::event(event);
 }
 void Window::capture(const QString &path) { grab().save(path); }
+
+void Window::resizeEvent(QResizeEvent *event) {
+    QMainWindow::resizeEvent(event);
+    const bool compact = height() < 720;
+    for (auto name : {"strokePreview", "shortcutHint"})
+        if (auto widget = findChild<QWidget *>(name)) widget->setVisible(!compact);
+    for (auto button : findChildren<QToolButton *>("drawingTool")) button->setFixedHeight(compact ? 34 : 44);
+    if (auto hint = findChild<QAction *>("paletteHintAction")) hint->setVisible(width() >= 1050);
+}

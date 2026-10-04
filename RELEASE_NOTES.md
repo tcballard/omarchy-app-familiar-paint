@@ -1,40 +1,26 @@
-# Familiar Paint v0.0.1 — Preview
+# Familiar Paint v0.0.2 — Preview
 
-Classic Paint tooling, with a CLI your coding agent can use. This first preview
-brings quick sketches, annotations and everyday image edits to Omarchy.
+The same familiar canvas, with less getting in the way.
 
-- Draw with brushes, fill, lines, arrows, shapes and raster text.
-- Select, crop, resize, rotate and flip; save PNG, JPEG or BMP.
-- Use bounded undo/redo and atomic saves with external-change checks.
-- Render JSON batches without a window, or enable a local agent session to paint
-  on the open canvas. Each batch is one undo step; revision checks protect live edits.
-- Install the prebuilt Linux x86_64 archive with system Qt runtime dependencies.
-  No compiler or language toolchain is required.
+This preview keeps the classic toolbox and colour palette, and makes the everyday controls easier to read and use.
 
-## Try the preview
+- **Know what is selected.** A stronger marker identifies the active tool, and a tick marks the current palette colour. Keyboard focus has its own treatment.
+- **See the options you need.** Text size appears for Text; shape fill appears for Rectangle and Ellipse. The toolbar drops its repeated app title.
+- **Keep drawing in a smaller window.** At 800×600, the toolbox becomes compact so every tool and the stroke-width control stay visible. The stroke sample and shortcut hint return when there is room.
+- **Keep the old-school feel.** Square buttons, bevelled edges and the bottom palette stay, with tighter spacing and a refreshed app screenshot.
 
-Download `familiar-paint-0.0.1-linux-x86_64.tar.gz` and `SHA256SUMS`.
-Verify the checksum, extract, and follow the included README or the
-[preview installation guide](https://github.com/tcballard/omarchy-app-familiar-paint/blob/v0.0.1/docs/PREVIEW-INSTALL.md).
-Close Paint before upgrading; the installer keeps the previous executable for rollback.
+## Try it
 
-## What has been checked
+Download `familiar-paint-0.0.2-linux-x86_64.tar.gz` and `SHA256SUMS`, verify the checksum, extract, and follow the included README or [installation guide](https://github.com/tcballard/omarchy-app-familiar-paint/blob/v0.0.2/docs/PREVIEW-INSTALL.md). Close Paint before upgrading. The installer retains the previous executable for rollback; saved images stay in place. Only the system Qt runtime is required.
 
-The release preparation passed Ubuntu CI, including the live CLI/socket round trip,
-desktop-file validation, archive checksums and packaged install/upgrade/remove smoke checks.
-The tagged build repeats these checks and records its source commit in `BUILD-INFO`.
+The drawing CLI and its version-1 JSON protocol remain compatible with v0.0.1.
 
-Real Omarchy/XPS acceptance, current Arch Qt runtime compatibility and continuous
-Wayland demo recording remain unverified. This is an early preview for testing.
-The [XPS checklist](https://github.com/tcballard/omarchy-app-familiar-paint/blob/v0.0.1/docs/XPS-TEST.md)
-covers the remaining desktop checks. Existing screenshots use Qt offscreen captures;
-the existing welcome video is staged.
+## Checks and preview limits
 
-## Known limits
+The UI was built and inspected through Qt's offscreen renderer at 1280×900, 800×600, and 1000×720 with 150% scaling. Automated checks exercise tool-option visibility, compact stroke-width access and Fit. CI also checks the native suite, live CLI/socket round trip, desktop entry and packaged install/upgrade/remove flow.
 
-No autosave/crash recovery, layers, movable pasted objects, print support or
-non-destructive text. Eraser paints white. Save regularly. Large drawing batches
-may briefly pause the window.
+Real Omarchy/XPS acceptance and current Arch Qt runtime compatibility remain pending. Screenshots are offscreen captures, and the existing welcome video is staged. This release is still a preview.
 
-If something breaks, please include the steps, your Omarchy/Qt versions and the
-source commit from `BUILD-INFO` in an issue.
+No autosave/crash recovery, layers, movable pasted objects or non-destructive text yet. Eraser paints white. Save regularly.
+
+If the compact layout gets in your way, include your window size and display scale with the issue.
