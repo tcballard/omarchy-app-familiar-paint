@@ -1,116 +1,86 @@
-# Familiar Paint
+<h1 align="center">Familiar Paint</h1>
 
-<img src="https://raw.githubusercontent.com/tcballard/omarchy-badges/75975e5b5bf75e7ede3764bcd2950046f7abfe2c/badges/v1/omarchy-app.svg" height="20" alt="Omarchy App">
+<p align="center">Draw something. Circle the important bit. Save it and carry on.</p>
 
-Draw something. Circle the important bit. Save it and carry on.
+<p align="center">
+  <a href="https://github.com/tcballard/omarchy-badges"><img src="https://raw.githubusercontent.com/tcballard/omarchy-badges/75975e5b5bf75e7ede3764bcd2950046f7abfe2c/badges/v1/omarchy-app.svg" alt="Built for Omarchy: App" height="24"></a>
+</p>
 
-Familiar Paint is a small native image editor for Omarchy, written in **C++17 and Qt 6 Widgets**. No Python, browser runtime, account or cloud service.
+Familiar Paint is a native drawing and image editing app for Omarchy. A classic toolbox, a canvas and a row of colours for quick sketches, annotations and everyday edits. Use the mouse yourself, or give your coding agent the CLI and let it draw.
 
-![Familiar Paint running with a reproducible sample drawing](docs/preview.png)
+![Familiar Paint showing its classic toolbox, colour palette and a house drawn on the canvas](docs/preview.png)
 
-Actual app capture using Qt's offscreen backend on Ubuntu; sample artwork drawn through the app's tools. This is not an Omarchy desktop screenshot.
+*Actual app capture on Ubuntu using Qt's offscreen backend. An Omarchy desktop capture is still pending.*
 
-## Development preview
+[**Try the preview →**](#try-familiar-paint)
 
-Version 0.0.1 is a runnable development preview, not a published or live-validated release. Intended target: Omarchy 4 / Hyprland on Linux x86_64. Tested locally: Ubuntu 24.04.3, GCC 13.3, Qt 6.4.2, offscreen rendering. **No installed Omarchy version has been tested.** The badge identifies a community app, not official endorsement.
+## Make yourself at home
 
-### What's here
+- **Draw and annotate.** Brushes, fill, shapes, arrows and text, with undo and redo.
+- **Make quick edits.** Select, crop, resize, rotate and flip an image, then save as PNG, JPEG or BMP.
+- **Keep familiar controls.** A two-column toolbox, square colour swatches, brush preview and zoom controls.
+- **Let your agent paint.** Run JSON drawing commands, render without a window, or send changes to an open canvas.
+- **Fit your desktop.** Follow supported Omarchy theme colours while keeping your artwork unchanged.
 
-- Brush, white eraser, contiguous colour fill, line, arrow, rectangle and ellipse.
-- Filled or outlined shapes, colour swatches, custom colours and eyedropper.
-- Multiline text with independent 8–200 px sizing, using the system font; text rasterises when placed.
-- Rectangular selection, copy selection, crop, resize, rotate and flip.
-- Paste a clipboard image as a new document, with an unsaved-work prompt.
-- Open PNG/JPEG/BMP/WebP where the Qt image plugin is installed; save PNG/JPEG/BMP.
-- Undo/redo with a 192 MiB snapshot budget; maximum canvas size 16 million pixels.
-- Classic two-column icon toolbox, live brush preview and a 28-swatch square palette.
-- 25–400% zoom slider, Fit and 1:1 controls, keyboard shortcuts, save/discard/cancel on close and replacement.
-- Atomic file replacement, external-change detection and coordination between Paint saves.
-- Background file loading/saving; editing pauses until the operation completes.
-- JSON drawing CLI, headless rendering, image inspection and opt-in live agent control.
-- Atomic drawing batches with one undo step and revision checks for live edits.
-- Omarchy semantic theme colours, refreshed every two seconds, with fallback colours.
+## Try Familiar Paint
 
-### Deliberate preview limits
+**Development preview, version 0.0.1.** There is no tagged release or Omarchy package yet. The intended target is Omarchy 4 / Hyprland on Linux x86_64; testing on an installed Omarchy desktop remains outstanding.
 
-No layers, movable pasted objects, arbitrary selection transforms, print support, autosave or crash recovery yet. Save regularly. Eraser paints white; it does not erase to transparency. PNG preserves alpha, while JPEG/BMP flatten onto white. Resize currently stretches to the entered dimensions. Text size is controlled independently from brush width.
+<a id="run-paint"></a>
 
-External-change detection catches modifications before saving, and Paint windows coordinate through a short-lived lock. Other editors do not honour that lock, so simultaneous writes from unrelated apps still have a race window.
-
-## Run Paint
-
-This repository contains the standalone native app for Omarchy.
-
-On Omarchy/Arch, build and install for your user:
+Build and install for your user on Omarchy/Arch:
 
 ```bash
-sudo pacman -S --needed base-devel cmake ninja qt6-base qt6-wayland
+sudo pacman -S --needed git base-devel cmake ninja qt6-base qt6-wayland
 git clone https://github.com/tcballard/omarchy-app-familiar-paint.git
 cd omarchy-app-familiar-paint
 cmake -S . -B target -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build target --parallel 2
 cmake --install target --prefix "$HOME/.local"
-familiar-paint
+"$HOME/.local/bin/familiar-paint"
 ```
 
-CI also uploads a Linux x86_64 executable after successful tests. It uses
-system Qt libraries and is not an AppImage or a published release.
+Open **Familiar Paint** from your app launcher after installing. Installation leaves your default image associations and personal keybindings alone.
 
-The app does not change default image associations or Hyprland keybindings. Super+W is handled by the desktop's normal close-window action. Its real-session behaviour still needs checking.
+A compiled Linux x86_64 executable is also available in the [successful CI run's artifacts](https://github.com/tcballard/omarchy-app-familiar-paint/actions/runs/37185638348). It requires system Qt libraries. [Build and installation details →](docs/GUIDE.md#run-paint)
 
 ## Let your agent paint
 
-Start an agent-enabled window, then give your agent the [CLI guide](docs/AGENT-CLI.md):
+Start a window with agent control enabled:
 
 ```bash
-./target/familiar-paint --listen studio
+familiar-paint --listen studio
 ```
 
-From another terminal, draw the supplied example and export it:
+In another terminal, from the repository folder:
 
 ```bash
-./target/familiar-paint --send studio --apply examples/house.json
-./target/familiar-paint --send studio --export house.png
-./target/familiar-paint --send studio --undo
+familiar-paint --send studio --apply examples/house.json
+familiar-paint --send studio --export house.png
+familiar-paint --send studio --undo
 ```
 
-Or render without a window:
+Each drawing batch is one undo step. Live edits use revision checks, and **Stop agent** in the status bar switches control off. Your agent supplies the drawing commands; no language model or account is built in.
 
-```bash
-./target/familiar-paint --render examples/house.json --output house.png
-```
+[CLI guide and command reference →](docs/AGENT-CLI.md)
 
-Your agent generates structured drawing commands; no language model is bundled.
-Live control is opt-in, local to your user and switchable off in the status bar.
-Headless rendering and the live command handler are tested. The actual socket
-transport still needs validation on a normal Linux desktop: this build environment
-blocks local socket listeners.
+<a id="cli-welcome-demo"></a>
 
-## Build from source
+[Watch the welcome demo](demo-video/familiar-paint-welcome.mp4): six CLI batches build a welcome card. The video uses real app captures in staged playback; it does not show live socket control.
 
-Requires CMake 3.22+, a C++17 compiler, Qt 6.4+ Widgets/Concurrent/Network, and Qt Test for tests. On Arch, the development components are included in `qt6-base`.
+## A few useful details
 
-```bash
-cmake -S . -B target -DCMAKE_BUILD_TYPE=Release
-cmake --build target --parallel 2
-ctest --test-dir target --output-on-failure
-./target/familiar-paint
-```
+The native build, test suite—including the live CLI/socket round trip—and desktop launcher validation [passed on GitHub's Ubuntu runner](https://github.com/tcballard/omarchy-app-familiar-paint/actions/runs/37185638348). This does not establish compatibility with a real Omarchy session.
 
-For a conventional prefix install: `cmake --install target --prefix "$HOME/.local"`.
+Save regularly: autosave and crash recovery are not implemented. Layers, movable pasted objects and non-destructive text editing are also not available yet. The eraser paints white; PNG preserves existing transparency. [Features and preview limits →](docs/GUIDE.md#deliberate-preview-limits)
 
-## Remove or roll back
+<a id="remove-or-roll-back"></a>
 
-Close the app, then run `bash scripts/uninstall.sh`. Saved images remain wherever you saved them. This preview creates no persistent app settings or recovery files.
+To remove a default user installation, close Paint and run `bash scripts/uninstall.sh` from the repository. Your saved images are kept. [Custom prefixes and rollback →](docs/GUIDE.md#remove-or-roll-back)
 
-The binary-preview installer backs up an existing binary to `~/.local/bin/familiar-paint.previous`. To roll back, close the app and replace `~/.local/bin/familiar-paint` with that backup. `FAMILIAR_INSTALL_PREFIX` can override the install/uninstall prefix; use the same value for both. Source installs through CMake do not create this backup.
+<a id="build-from-source"></a>
+<a id="verification-and-next-acceptance"></a>
 
-## CLI welcome demo
+[Development guide](docs/GUIDE.md#build-from-source) · [Verification record](VERIFICATION.md) · [Architecture](ARCHITECTURE.md) · [Report a bug](https://github.com/tcballard/omarchy-app-familiar-paint/issues)
 
-[Watch the 23-second welcome demo](demo-video/familiar-paint-welcome.mp4).
-These are real Qt captures of CLI-generated images, edited into staged playback.
-Live socket control is not demonstrated. [Reproduce it](demo-video/README.md).
-
-## Verification and next acceptance
-
-See [VERIFICATION.md](VERIFICATION.md) for observed checks and outstanding real desktop tests, [ARCHITECTURE.md](ARCHITECTURE.md) for ownership, and [CREDITS.md](CREDITS.md) for dependencies and artwork.
+MIT licensed. [Credits](CREDITS.md). Made by [Tom Ballard](https://github.com/tcballard).
