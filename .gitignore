@@ -7,3 +7,6 @@ target-agent/
 demo-video/build/
 demo-video/render/
 demo-video/paint
+
+dist/
+.pytest_cache/
