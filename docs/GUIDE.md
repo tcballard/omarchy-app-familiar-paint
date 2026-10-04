@@ -2,7 +2,7 @@
 
 ## Development preview
 
-Version 0.0.1 is a runnable development preview, not a published or live-validated release. Intended target: Omarchy 4 / Hyprland on Linux x86_64. Tested locally: Ubuntu 24.04.3, GCC 13.3, Qt 6.4.2, offscreen rendering. **No installed Omarchy version has been tested.** The badge identifies a community app, not official endorsement.
+Version 0.0.2 is an early preview. Downloadable previews are available from GitHub Releases; live desktop validation remains pending. Intended target: Omarchy 4 / Hyprland on Linux x86_64. Tested locally: Ubuntu 24.04.3, GCC 13.3, Qt 6.4.2, offscreen rendering. **No installed Omarchy version has been tested.** The badge identifies a community app, not official endorsement.
 
 ### What's here
 

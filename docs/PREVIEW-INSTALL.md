@@ -1,6 +1,6 @@
 # Familiar Paint preview
 
-Native Paint for Omarchy, version 0.0.1. This is an early preview.
+Native Paint for Omarchy, version 0.0.2. This is an early preview.
 The archive contains a prebuilt Linux x86_64 executable: no compiler, Cargo,
 Node.js or Python is needed to install or run Paint. It uses system Qt libraries.
 

@@ -40,7 +40,7 @@ int main(int argc,char **argv) {
     }
     if(headless) qputenv("QT_QPA_PLATFORM","offscreen");
     QApplication app(argc,argv);
-    app.setApplicationName("Familiar Paint"); app.setApplicationVersion("0.0.1"); app.setOrganizationName("Familiar");
+    app.setApplicationName("Familiar Paint"); app.setApplicationVersion("0.0.2"); app.setOrganizationName("Familiar");
     app.setDesktopFileName("io.github.tcballard.FamiliarPaint"); app.setWindowIcon(QIcon::fromTheme("io.github.tcballard.FamiliarPaint")); app.setStyle("Fusion");
     QCommandLineParser parser;
     parser.setApplicationDescription("Native Paint with JSON drawing batches and opt-in local agent control. See --schema.");

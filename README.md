@@ -28,25 +28,24 @@ Preparing to test on the XPS? See the [binary preview setup](docs/PREVIEW-INSTAL
 [desktop test and live recording checklist](docs/XPS-TEST.md), and
 [release procedure](docs/RELEASE.md).
 
-**Development preview, version 0.0.1.** There is no tagged release or Omarchy package yet. The intended target is Omarchy 4 / Hyprland on Linux x86_64; testing on an installed Omarchy desktop remains outstanding.
+**Preview, version 0.0.2.** Download the prebuilt archive from [Releases](https://github.com/tcballard/omarchy-app-familiar-paint/releases). There is no Omarchy package yet. The intended target is Omarchy 4 / Hyprland on Linux x86_64; testing on an installed Omarchy desktop remains outstanding.
 
 <a id="run-paint"></a>
 
-Build and install for your user on Omarchy/Arch:
+Download the Linux x86_64 archive and `SHA256SUMS` from the release. No compiler or language toolchain is needed. Close Paint before upgrading.
 
 ```bash
-sudo pacman -S --needed git base-devel cmake ninja qt6-base qt6-wayland
-git clone https://github.com/tcballard/omarchy-app-familiar-paint.git
-cd omarchy-app-familiar-paint
-cmake -S . -B target -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build target --parallel 2
-cmake --install target --prefix "$HOME/.local"
+sudo pacman -S --needed qt6-base qt6-wayland
+sha256sum -c SHA256SUMS
+tar -xzf familiar-paint-0.0.2-linux-x86_64.tar.gz
+cd familiar-paint-0.0.2-linux-x86_64
+bash scripts/install.sh
 "$HOME/.local/bin/familiar-paint"
 ```
 
 Open **Familiar Paint** from your app launcher after installing. Installation leaves your default image associations and personal keybindings alone.
 
-A compiled Linux x86_64 executable is also available in the [successful CI run's artifacts](https://github.com/tcballard/omarchy-app-familiar-paint/actions/runs/37185638348). It requires system Qt libraries. [Build and installation details →](docs/GUIDE.md#run-paint)
+[Build from source →](docs/GUIDE.md#run-paint) · [Installation and rollback →](docs/PREVIEW-INSTALL.md)
 
 ## Let your agent paint
 
