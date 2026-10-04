@@ -24,6 +24,10 @@ Familiar Paint is a native drawing and image editing app for Omarchy. A classic 
 
 ## Try Familiar Paint
 
+Preparing to test on the XPS? See the [binary preview setup](docs/PREVIEW-INSTALL.md),
+[desktop test and live recording checklist](docs/XPS-TEST.md), and
+[release procedure](docs/RELEASE.md).
+
 **Development preview, version 0.0.1.** There is no tagged release or Omarchy package yet. The intended target is Omarchy 4 / Hyprland on Linux x86_64; testing on an installed Omarchy desktop remains outstanding.
 
 <a id="run-paint"></a>

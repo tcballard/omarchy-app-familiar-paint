@@ -1,5 +1,10 @@
 name: Native checks
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   linux:
     runs-on: ubuntu-24.04
@@ -10,7 +15,43 @@ jobs:
       - run: cmake --build target --parallel 2
       - run: ctest --test-dir target --output-on-failure
       - run: desktop-file-validate packaging/io.github.tcballard.FamiliarPaint.desktop
+      - name: Build preview archive
+        run: |
+          export SOURCE_COMMIT="$(git rev-parse HEAD)"
+          export SOURCE_DATE_EPOCH="$(git show -s --format=%ct HEAD)"
+          bash scripts/package-preview.sh "$PWD/target" "$PWD/dist"
+          cp RELEASE_NOTES.md dist/
+      - name: Validate packaged install and rendering
+        run: |
+          cd dist
+          sha256sum -c SHA256SUMS
+          tar -xzf familiar-paint-*-linux-x86_64.tar.gz
+          bash familiar-paint-*/scripts/smoke-preview.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: familiar-paint-linux-x86_64
-          path: target/familiar-paint
+          name: familiar-paint-preview-linux-x86_64
+          path: |
+            dist/*.tar.gz
+            dist/SHA256SUMS
+            dist/RELEASE_NOTES.md
+          if-no-files-found: error
+  draft-release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: linux
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: familiar-paint-preview-linux-x86_64
+          path: dist
+      - name: Create unpublished prerelease draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --verify-tag --draft --prerelease \
+            --title "Familiar Paint $GITHUB_REF_NAME — Preview" \
+            --notes-file dist/RELEASE_NOTES.md dist/*.tar.gz dist/SHA256SUMS
